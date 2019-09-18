@@ -1,0 +1,74 @@
+.logo {
+    width: 10vw;
+    height: 20vh;
+}
+
+
+/* Spinner Animation */
+
+.spinner {
+    margin-left: 35vw;
+    border: 12px solid #e9ecef;
+    border-radius: 50%;
+    border-top: 12px solid #005194;
+    border-bottom: 12px solid #005194;
+    width: 120px;
+    height: 120px;
+    /* Browser: Safari */
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+
+/* Browser: Safari */
+
+@-webkit-keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+    0% {
+        transform: rotate(0deg);
+    }
+}
+
+
+/* "sudoku table" Animation */
+
+.animate-bottom {
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+    from {
+        bottom: -100px;
+        opacity: 0
+    }
+    to {
+        bottom: 0px;
+        opacity: 1
+    }
+}
+
+@keyframes animatebottom {
+    from {
+        bottom: -100px;
+        opacity: 0
+    }
+    to {
+        bottom: 0;
+        opacity: 1
+    }
+}

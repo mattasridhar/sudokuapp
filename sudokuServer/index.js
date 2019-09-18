@@ -4,7 +4,7 @@ const boardUrls = require('./services/boardUrls');
 var app = express();
 const PORT = 8080;
 
-app.get('/', (req, res) => res.send('Hello Sridhar'));
+app.get('/', (req, res) => res.send('Hello Sridhar from backend:8080'));
 
 app.listen(PORT, () => console.log("Sridhar listening to port: " + PORT));
 
