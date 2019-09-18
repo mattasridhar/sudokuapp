@@ -1,3 +1,3 @@
 export class appSchema {
-    msg: String;
+    msg: string;
 }

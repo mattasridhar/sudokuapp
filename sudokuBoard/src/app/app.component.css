@@ -72,3 +72,57 @@
         opacity: 1
     }
 }
+
+
+/* Table cell styles */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    display: inline-block;
+}
+
+tr,
+td {
+    text-align: center;
+    margin: 0%;
+    border-spacing: 0px;
+    padding: 0%;
+}
+
+.cellValue {
+    width: 50px;
+    height: 50px;
+    align-content: center;
+    text-align: center;
+}
+
+
+/* Body content styles */
+
+#sudokuBoardContainer,
+#contentArea {
+    text-align: center;
+}
+
+#sudokuTable {
+    padding-left: 15%;
+    display: inline-block;
+}
+
+.rulesArea {
+    text-align: left;
+}
+
+.headerSection {
+    background-color: aquamarine;
+}
+
+.titleSection {
+    float: left;
+}
+
+.rulesSection {
+    float: right;
+}
