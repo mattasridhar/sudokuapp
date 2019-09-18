@@ -2,6 +2,7 @@ export = class SudokuValues {
     row: number;
     col: number;
     value: number;
+    board: number[][];
 
     constructor(row: number, col: number, value: number) {
         this.row = row;
