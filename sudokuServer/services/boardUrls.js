@@ -11,9 +11,11 @@ router.get('/test', (req, res, next) => {
 router.get('/board', (req, res, next) => {
     console.log("Sridhar Board API")
 
+    console.time("Time Consumed");
     let sudokuValues = new SudokuValues(1, 2, 3);
     // let randomArray = sudokuValues.randomArrayGenerator();
-    let board = sudokuValues.createBoardValues();
+    let board = sudokuValues.createBoardValues(); //sudokuValues._sudokuBoard;//
+    console.timeEnd("Time Consumed");
     // res.json({ msg: "Sridhar Board Service Test Successfull" });
     res.json({ msg: board });
 });
