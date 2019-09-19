@@ -12,8 +12,10 @@ router.get('/board', (req, res, next) => {
     console.log("Sridhar Board API")
 
     let sudokuValues = new SudokuValues(1, 2, 3);
-    sudokuValues.createBoardValues();
-    res.json({ msg: "Sridhar Board Service Test Successfull" });
+    // let randomArray = sudokuValues.randomArrayGenerator();
+    let board = sudokuValues.createBoardValues();
+    // res.json({ msg: "Sridhar Board Service Test Successfull" });
+    res.json({ msg: board });
 });
 
 module.exports = router;
