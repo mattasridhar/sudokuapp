@@ -107,7 +107,7 @@ td {
 }
 
 #sudokuTable {
-    padding-left: 15%;
+    /* padding-left: 10%; */
     display: inline-block;
 }
 

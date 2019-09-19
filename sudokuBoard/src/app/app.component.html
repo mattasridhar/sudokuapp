@@ -7,10 +7,10 @@
         </div>
         <div class="rulesSection">
             <blockquote class="blockquote rulesArea">
-                <legend> <u><i>RULES</i></u></legend>
+                <legend> <u><i>NICE TO KNOW:</i></u></legend>
                 <footer class="blockquote-footer"><cite><b>Click 'RELOAD' button</b></cite> to see New SUDOKU Solution</footer>
                 <footer class="blockquote-footer"><cite><b>CLICK ONCE</b></cite> on the cell and hit Reload button to see New Solution</footer>
-                <footer class="blockquote-footer"><cite><b>DOUBLE CLICK</b></cite> on the cell to De-Delect the selected cell</footer>
+                <footer class="blockquote-footer"><cite><b>DOUBLE CLICK</b></cite> on the cell to De-Select the selected cell</footer>
                 <footer class="blockquote-footer"><b>**AT A TIME ONLY ONE CELL CAN BE SELECTED**</b></footer>
             </blockquote>
         </div>
@@ -26,24 +26,27 @@
 <!-- Content display area -->
 <div class="container">
     <div class="jumbotron" id="contentArea">
-        <!-- <img id="mySpinner" src="http://www2.emp.uva.es/wp-content/plugins/responsive-flipbook/assets/images/loader.gif" ng-show="true" /> -->
         <div class="spinner" id="spinner"></div>
         <div style="display:none;" id="sudokuBoardContainer" class="animate-bottom">
-            <h6>{{title}}</h6>
+            <hr class="my-4">
             <!-- displaying the Sudoku Board -->
-            <table id="sudokuTable">
+            <table id="sudokuTable" *ngIf="hasBoard">
                 <tbody>
                     <!-- running <tr> for rows and <td> for columns -->
                     <tr *ngFor="let value of values; let i=index">
-                        <td class="table-hover" *ngFor="let value of values; let j=index">
-                            <input class="form-control cellValue" id={{i}}{{j}} (click)="selectMe($event)" (dblclick)="unSelectMe()" type="text" placeholder={{value}}>
+                        <td class="table-hover" *ngFor="let cell of value; let j=index">
+                            <input class="form-control cellValue" id={{i}}{{j}} (click)="selectMe($event)" (dblclick)="unSelectMe()" type="text" placeholder={{cell}}>
                         </td>
                     </tr>
                 </tbody>
             </table>
+            <hr class="my-4">
+
+            <div class="alert alert-dismissible alert-danger" *ngIf="!hasBoard">
+                <button type="button" class="close" data-dismiss="alert" (click)="closeError()">&times;</button>
+                <strong>Our server seems to be a little <i>MIFFED UP</i> with you. </strong> <br>
+                <a href="" class="alert-link">Kindly refresh the page</a> or try click the RELOAD button above to <i>CHEER</i> her up!!.
+            </div>
         </div>
-        <!-- <div class="blue-square-container">
-            <div class="blue-square"></div>
-        </div> -->
     </div>
 </div>
