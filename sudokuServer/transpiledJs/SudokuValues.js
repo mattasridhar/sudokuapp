@@ -6,9 +6,6 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
             r[k] = a[j];
     return r;
 };
-function endsWith(str, suffix) {
-    return str.indexOf(suffix, str.length - suffix.length) !== -1;
-}
 //create the Sudoku board with potential values. 
 //making use of Backtracking Algorithm in a recursive manner. Reference: https://www.tutorialspoint.com/introduction-to-backtracking-algorithms
 function populateBoardCandidates(currentBoard) {
@@ -75,9 +72,9 @@ function columnContainsValue(columnIndex, toBeStored, currentBoard) {
 function subsetContainsValue(rowIndex, columnIndex, toBeStored, currentBoard) {
     var minRowIndex = rowIndex - (rowIndex % 3);
     var minColumnIndex = columnIndex - (columnIndex % 3);
-    for (var rowIndex = minRowIndex; rowIndex <= minRowIndex + 2; ++rowIndex) {
-        for (var columnIndex = minColumnIndex; columnIndex <= minColumnIndex + 2; ++columnIndex) {
-            if (currentBoard.generatedBoard[rowIndex][columnIndex] === toBeStored) {
+    for (var rowIndex_1 = minRowIndex; rowIndex_1 <= minRowIndex + 2; ++rowIndex_1) {
+        for (var columnIndex_1 = minColumnIndex; columnIndex_1 <= minColumnIndex + 2; ++columnIndex_1) {
+            if (currentBoard.generatedBoard[rowIndex_1][columnIndex_1] === toBeStored) {
                 return true; //row/column of subset has the value
             }
         }

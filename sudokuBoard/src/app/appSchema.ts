@@ -4,10 +4,8 @@ export class appResponseSchema {
 }
 
 export class appRequestSchema {
-    selectedCellInfo?: {
-        row: number,
-        column: number,
-        value: number,
-        boardSize: number
+        rowIndex: number;
+        columnIndex: number;
+        value: number;
+        boardSize: number;
     };
-}

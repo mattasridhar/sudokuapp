@@ -19,7 +19,7 @@ export class AppComponent {
   previousCellId: string = "";
   values: number[][];
   reloadBtn;
-  selectedCellInfo = {
+  selectedCellInfo:appRequestSchema = {
     rowIndex: -1,
     columnIndex: -1,
     value: -1,

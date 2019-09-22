@@ -2,7 +2,7 @@
 export = class SudokuValues {
     private _sudokuBoard;
     constructor(private initBoard: number[][], private boardSize: number) {
-        var initialBoard = new GenerateTemplate(initBoard, boardSize);
+        let initialBoard = new GenerateTemplate(initBoard, boardSize);
         let finalBoard = populateBoardCandidates(initialBoard);
         if (finalBoard !== null) {
             this._sudokuBoard = finalBoard;
@@ -14,21 +14,17 @@ export = class SudokuValues {
     }
 }
 
-function endsWith(str, suffix) {
-    return str.indexOf(suffix, str.length - suffix.length) !== -1;
-}
-
 //create the Sudoku board with potential values. 
 //making use of Backtracking Algorithm in a recursive manner. Reference: https://www.tutorialspoint.com/introduction-to-backtracking-algorithms
 function populateBoardCandidates(currentBoard: GenerateTemplate): GenerateTemplate {
-    var toBePopulated = indexToBePopulated(currentBoard);
+    let toBePopulated = indexToBePopulated(currentBoard);
     if (toBePopulated.rowIndex !== -1 && toBePopulated.columnIndex !== -1) {
-        var row = toBePopulated.rowIndex;
-        var column = toBePopulated.columnIndex;
-        for (var toBeStored = 1; toBeStored <= 9; ++toBeStored) {
+        let row = toBePopulated.rowIndex;
+        let column = toBePopulated.columnIndex;
+        for (let toBeStored = 1; toBeStored <= 9; ++toBeStored) {
             if (isPotentialCandidate(row, column, toBeStored, currentBoard)) {
-                var storedValue = injectPotentialCandidate(toBeStored, row, column, currentBoard);
-                var updatedBoard = populateBoardCandidates(storedValue);
+                let storedValue = injectPotentialCandidate(toBeStored, row, column, currentBoard);
+                let updatedBoard = populateBoardCandidates(storedValue);
                 if (updatedBoard != null) {
                     return updatedBoard;
                 }
@@ -46,8 +42,8 @@ function indexToBePopulated(currentBoard: GenerateTemplate) {
         rowIndex: -1,
         columnIndex: -1
     };
-    for (var row = 0; row < currentBoard.BOARD_SIZE; row++) {
-        for (var column = 0; column < currentBoard.BOARD_SIZE; column++) {
+    for (let row = 0; row < currentBoard.BOARD_SIZE; row++) {
+        for (let column = 0; column < currentBoard.BOARD_SIZE; column++) {
             if (currentBoard.generatedBoard[row][column] == 0) {
                 toBeFilled = {
                     rowIndex: row,
@@ -88,11 +84,11 @@ function columnContainsValue(columnIndex: number, toBeStored: number, currentBoa
 
 //check for Each 3x3 subset of the entire board and return true if 'toBeStored' value is found
 function subsetContainsValue(rowIndex: number, columnIndex: number, toBeStored: number, currentBoard: GenerateTemplate) {
-    var minRowIndex = rowIndex - (rowIndex % 3);
-    var minColumnIndex = columnIndex - (columnIndex % 3);
+    let minRowIndex = rowIndex - (rowIndex % 3);
+    let minColumnIndex = columnIndex - (columnIndex % 3);
 
-    for (var rowIndex = minRowIndex; rowIndex <= minRowIndex + 2; ++rowIndex) {
-        for (var columnIndex = minColumnIndex; columnIndex <= minColumnIndex + 2; ++columnIndex) {
+    for (let rowIndex = minRowIndex; rowIndex <= minRowIndex + 2; rowIndex++) {
+        for (let columnIndex = minColumnIndex; columnIndex <= minColumnIndex + 2; columnIndex++) {
             if (currentBoard.generatedBoard[rowIndex][columnIndex] === toBeStored) {
                 return true; //row/column of subset has the value
             }
@@ -114,15 +110,15 @@ function segmentContainsValue(segmentArray, toBeStored) {
     // Inject the potential Candidate 'toBeStored' into the current board by making a replica of it.
     function injectPotentialCandidate(toBeStored: number, row: number, column: number, currentBoard: GenerateTemplate): GenerateTemplate {
         // Creating a clone with the potential Candidate 'toBeStored' in its rightful location
-        var clonedBoard: number[][] = new Array();
+        let clonedBoard: number[][] = new Array();
         // making use of Deep copy to prevent any changes in original be reflected in my clone.
-        for (var r = 0; r < currentBoard.BOARD_SIZE; r++) {
+        for (let r = 0; r < currentBoard.BOARD_SIZE; r++) {
             clonedBoard[r] = [...currentBoard.generatedBoard[r]];
         }
 
         // traverse through each row's column and place the potential candidate else store the existing value from our current board
-        var targetRow: number[] = new Array()
-        for (var c = 0; c < currentBoard.BOARD_SIZE; c++) {
+        let targetRow: number[] = new Array()
+        for (let c = 0; c < currentBoard.BOARD_SIZE; c++) {
             if (c == column) {
                 targetRow[c] = toBeStored;
             }
