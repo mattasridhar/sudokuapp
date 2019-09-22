@@ -9,6 +9,7 @@ import { appRequestSchema, appResponseSchema } from './appSchema';
   providers: [AppService]
 })
 export class AppComponent {
+  title = 'sudokuBoard';
   message: string = "Sudoku, (originally called Number Place) is a logic-based, combinatorial number-placement puzzle. The objective is to fill a 9×9 grid with digits so that each column, each row, and each of the nine 3×3 subgrids that compose the grid (also called 'boxes', 'blocks', or 'regions') contain all of the digits from 1 to 9. The puzzle setter provides a partially completed grid, which for a well-posed puzzle has a single solution.";
   BOARD_SIZE: number = 9;
   result: appResponseSchema;
@@ -40,6 +41,7 @@ export class AppComponent {
   loadDefaultSudokuBoard() {
     this.appService.getBoardData(this.BOARD_SIZE)
       .subscribe(result => {
+        console.log(JSON.stringify(result));
         this.result = result;
         this.values = this.result.board;
         if (this.values.length > 0) {
@@ -50,14 +52,15 @@ export class AppComponent {
           this.hasBoard = false;
         }
       });
-      this.resetSelectedCellInfo();
+    this.resetSelectedCellInfo();
   }
 
   //load the board in non-default mode i.e. passing the selected cell
-  loadNonDefaultSudoKuBoard(selectedCellInfo){
+  loadNonDefaultSudoKuBoard(selectedCellInfo) {
     console.log("SRI loadSudokuNonDefault: " + selectedCellInfo);
     this.appService.getBoardDataWithSelectedCell(selectedCellInfo)
       .subscribe(result => {
+        console.log(JSON.stringify(result));
         this.result = result;
         this.values = this.result.board;
         if (this.values.length > 0) {
@@ -68,7 +71,7 @@ export class AppComponent {
           this.hasBoard = false;
         }
       });
-      this.resetSelectedCellInfo();
+    this.resetSelectedCellInfo();
   }
 
   //once the Data is received by the UI, hide the spinner and display the Sudoku board
@@ -163,7 +166,7 @@ export class AppComponent {
 
   //handling the error dialog box. Let's really really wish we never have to see this CAUTION box but Just to be on the safe side, let's have him as well.
   //Reload the board by calling server again.
-  closeError(){
+  closeError() {
     this.loadDefaultSudokuBoard();
   }
 }

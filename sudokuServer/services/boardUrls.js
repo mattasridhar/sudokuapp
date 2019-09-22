@@ -1,16 +1,22 @@
 const express = require('express');
 const router = express.Router();
+const cors = require('cors');
 
 const SudokuValues = require('../transpiledJs/SudokuValues');
 
-router.get('/test', (req, res, next) => {
+var corsOptions = {
+    origin: 'http:localhost:4200/',//'http://sudoku.com',
+    optionsSuccessStatus: 200 
+}
+
+router.get('/test', cors(corsOptions), (req, res, next) => {
     console.log("Sudoku Board test")
     res.json({ message: "Sudoku Board Service Test Successfull" });
 });
 
 //Service to handle non-default scenario i.e. cell is selected on the sudoku board
 //accepts the location of the selectedCell on the Board as its request body
-router.post('/boardCell', (req, res, next) => {
+router.post('/boardCell', cors(corsOptions), (req, res, next) => {
     console.time("Sudoku Board with Selected Cell Generated in");
 
     let initBoard = new SudokuValues(createTemplateBoard(req.body), req.body.boardSize);
@@ -19,12 +25,13 @@ router.post('/boardCell', (req, res, next) => {
     console.log("SUDOKU BOARD (WITH CELL SELECTION):");
     console.log(finalBoard);
     console.timeEnd("Sudoku Board with Selected Cell Generated in");
+    res.header("Access-Control-Allow-Origin", "*");
     res.json({ board: finalBoard });
 });
 
 //Service to handle default scenario i.e. no cell is selected.
 //Why the 'boardSize' in params you ask? Well thats in case we have time to implement for varying sizes of sudoku board
-router.get('/board/:boardSize', (req, res, next) => {
+router.get('/board/:boardSize', cors(corsOptions), (req, res, next) => {
     console.time("Sudoku Board without Selected Cell Generated in");
 
     let initBoard = new SudokuValues(createTemplateBoard(req.body), req.params.boardSize);
@@ -33,6 +40,7 @@ router.get('/board/:boardSize', (req, res, next) => {
     console.log("SUDOKU BOARD (WITHOUT CELL SELECTION):");
     console.log(finalBoard);
     console.timeEnd("Sudoku Board without Selected Cell Generated in");
+    res.header("Access-Control-Allow-Origin", "*");
     res.json({ board: finalBoard });
 });
 
