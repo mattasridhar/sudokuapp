@@ -1,5 +1,5 @@
-describe('main', function() {
-    describe('#endsWith()', function() {
+describe('SudokuValues', function() {
+    describe('endsWith()', function() {
         it('should return true when the value ends with the suffix', function() {
             assert.equal(true, endsWith("abcd", "cd"));
         });

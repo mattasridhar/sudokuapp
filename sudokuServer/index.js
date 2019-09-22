@@ -8,6 +8,8 @@ const PORT = 8080;
 
 app.get('/', (req, res) => res.send('Hello Sridhar from backend:8080'));
 
-app.listen(PORT, () => console.log("Sridhar listening to port: " + PORT));
+var server = app.listen(PORT, () => console.log("Sridhar listening to port: " + PORT));
 
 app.use('/sudoku', boardUrls);
+
+module.exports = server

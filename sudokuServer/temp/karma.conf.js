@@ -2,14 +2,14 @@ module.exports = function(config) {
     config.set({
         frameworks: ['mocha', 'chai'],
         files: [
-            'transpiledJs/**/main.js',
+            'transpiledJs/**/*.js',
             'test/**/*.js'
         ],
         reporters: ['progress'],
         port: 9876, // karma web server port
         colors: true,
         logLevel: config.LOG_INFO,
-        browsers: ['ChromeHeadless', 'Firefox', 'FirefoxDeveloper', 'FirefoxNightly'],
+        browsers: ['Firefox'],
         autoWatch: false,
         concurrency: Infinity,
         singleRun: false,
