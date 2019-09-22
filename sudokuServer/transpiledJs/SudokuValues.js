@@ -72,9 +72,9 @@ function columnContainsValue(columnIndex, toBeStored, currentBoard) {
 function subsetContainsValue(rowIndex, columnIndex, toBeStored, currentBoard) {
     var minRowIndex = rowIndex - (rowIndex % 3);
     var minColumnIndex = columnIndex - (columnIndex % 3);
-    for (var rowIndex = minRowIndex; rowIndex <= minRowIndex + 2; ++rowIndex) {
-        for (var columnIndex = minColumnIndex; columnIndex <= minColumnIndex + 2; ++columnIndex) {
-            if (currentBoard.generatedBoard[rowIndex][columnIndex] === toBeStored) {
+    for (var rowIndex_1 = minRowIndex; rowIndex_1 <= minRowIndex + 2; ++rowIndex_1) {
+        for (var columnIndex_1 = minColumnIndex; columnIndex_1 <= minColumnIndex + 2; ++columnIndex_1) {
+            if (currentBoard.generatedBoard[rowIndex_1][columnIndex_1] === toBeStored) {
                 return true; //row/column of subset has the value
             }
         }
