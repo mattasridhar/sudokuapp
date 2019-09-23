@@ -52,7 +52,7 @@ describe('AppService', () => {
         expect(response.board).toBe(responseBoard);
       });
 
-      const req = httpMock.expectOne(`${serverURI}board/9`, 'calling getBoardData GET API');
+      const req = httpMock.expectOne(`${serverURI}board/?boardSize=9`, 'calling getBoardData GET API');
       expect(req.request.method).toBe("GET");
       req.flush({ board: responseBoard });
     });

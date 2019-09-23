@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AppService } from './app.service';
 import { appRequestSchema, appResponseSchema } from './appSchema';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ import { appRequestSchema, appResponseSchema } from './appSchema';
 
 export class AppComponent {
   
+  production = environment.production;
   BOARD_SIZE: number = 9;
   result: appResponseSchema;
   showSpinner: Boolean = true;

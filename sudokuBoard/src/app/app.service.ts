@@ -22,7 +22,12 @@ export class AppService {
     then this might come in handy
    */
   getBoardData(boardSize) {
-    return this.http.get(`${this._sudokuUrl}board/` + boardSize)
+    let boardSizeParam: string = "";
+    if(boardSize){
+      boardSizeParam = "?boardSize=" + boardSize;
+    }
+    
+    return this.http.get(`${this._sudokuUrl}board/` + boardSizeParam)
       .pipe(
         map(
           (res) => res

@@ -35,12 +35,14 @@ router.post('/boardCell', cors(corsOptions), (req, res, next) => {
 
 /* 
  Service to handle default scenario i.e. no cell is selected.
- Why the 'boardSize' in params you ask? Well thats in case we have time to implement for varying sizes of sudoku board
+ Why the 'boardSize' in params you ask? 
+    : Well thats in case we have time to implement for varying sizes of sudoku board
+    : If no Query params are sent then it takes the boardsize as 9 by default
  */
-router.get('/board/:boardSize', cors(corsOptions), (req, res, next) => {
+router.get('/board/', cors(corsOptions), (req, res, next) => {
     console.time("Sudoku Board without Selected Cell Generated in");
 
-    let initBoard = new SudokuValues(createTemplateBoard(req.body), req.params.boardSize);
+    let initBoard = new SudokuValues(createTemplateBoard(req.body), req.query.boardSize || 9);
 
     let finalBoard = initBoard.finalSudukoBoard().generatedBoard;
 
