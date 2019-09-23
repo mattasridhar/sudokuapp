@@ -4,11 +4,24 @@ const request = require('supertest');
 const app = require('../index');
 
 describe('GET', () => {
-    // Validating the board when no cell is selected.
-    it('Default Sudoku Board(No Cell is Selected)', (done) => {
-        request(app).get('/sudoku/board/9')
+    // Validating the board when no cell is selected and is Pinged with boardSize.
+    it('Default Sudoku Board(No Cell is Selected & Board Size is sent)', (done) => {
+        request(app).get('/sudoku/board/?boardSize=9')
             .then((res) => {
-                console.log("\nSudoku Board (with No Selected Cell) Validated. \n");
+                console.log("\nSudoku Board (with Board Size and No Selected Cell) Validated. \n");
+                const respBoard = res.body.board;
+                const validity = checkValidity(respBoard);
+                expect(validity).to.to.to.to.true;
+                done();
+            })
+            .catch((err) => done(err));
+    });
+
+    // Validating the board when no cell is selected and is Pinged with boardSize.
+    it('Default Sudoku Board(No Cell is Selected & Board Size is not sent)', (done) => {
+        request(app).get('/sudoku/board/')
+            .then((res) => {
+                console.log("\nSudoku Board (with No Board Size and No Selected Cell) Validated. \n");
                 const respBoard = res.body.board;
                 const validity = checkValidity(respBoard);
                 expect(validity).to.to.to.to.true;
