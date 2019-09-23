@@ -26,8 +26,7 @@ export class AppService {
     if(boardSize){
       boardSizeParam = "?boardSize=" + boardSize;
     }
-    console.log("boardSizeParam");
-    console.log(boardSizeParam);
+    
     return this.http.get(`${this._sudokuUrl}board/` + boardSizeParam)
       .pipe(
         map(
