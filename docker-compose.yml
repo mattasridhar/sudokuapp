@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+ sudoku-ws-docker:
+  container_name: sudoku-ws-docker
+  build: ./sudokuServer
+  volumes:
+    - ./sudokuServer:/var/www/sudokuapp
+  ports:
+    - 9094:8080
+
+ sudoku-spa-docker:
+   container_name: sudoku-spa-docker
+   build: ./sudokuBoard
+   volumes:
+     - ./sudokuBoard:/var/www/sudokuapp
+   ports:
+     - 9093:4200
+   depends_on:
+     - sudoku-ws-docker

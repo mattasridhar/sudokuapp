@@ -8,6 +8,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppService } from './app.service';
 
+import { BrowserXhr } from '@angular/http';
+import { CustomExtBrowserXhr } from './custom-ext-browser-xhr';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -20,7 +23,9 @@ import { AppService } from './app.service';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [AppService],
+  providers: [
+    AppService,  
+    {provide: BrowserXhr, useClass:CustomExtBrowserXhr},],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

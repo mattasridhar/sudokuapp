@@ -12,7 +12,7 @@ export class AppService {
     Don't know why I decided to opt for `${template-literal}` style but hey!! you never know..
     the url can get long anytime. Then this would spare me the need for tailing + signs 
    */
-  private _sudokuUrl = 'http://sudoku.com/sudoku/';
+  private _sudokuUrl = 'http://sudoku-ws-docker/sudoku/';
 
   constructor(private http: HttpClient) { }
 
@@ -27,7 +27,11 @@ export class AppService {
       boardSizeParam = "?boardSize=" + boardSize;
     }
     
-    return this.http.get(`${this._sudokuUrl}board/` + boardSizeParam)
+    let headers = new HttpHeaders();
+    headers.append('Access-Control-Allow-Credentials', 'true');
+    headers.append('Content-Type', 'application/json');
+    return this.http.get(`${this._sudokuUrl}board/` + boardSizeParam, {headers: headers
+    })
       .pipe(
         map(
           (res) => res
