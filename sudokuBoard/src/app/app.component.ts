@@ -138,13 +138,17 @@ export class AppComponent {
 
   // Reload the board when Reload button is clicked
   reloadBoard() {
-    const cellId = this.selectedCellId;
+    let cellId = this.selectedCellId;
 
     if (cellId) {
-      const indices = cellId.split("");
+      let indices = cellId.split("");
       this.selectedCellInfo.rowIndex = +indices[0];//unary + because its the fastest
       this.selectedCellInfo.columnIndex = +indices[1];
       this.selectedCellInfo.value = this.selectedCellValue;
+      //empty the selection else will populate the values for next iteration
+      indices = [];
+      cellId = "";
+      this.selectedCellId = "";
     }
 
     this.hideSpinner(false);
@@ -153,8 +157,6 @@ export class AppComponent {
       this.loadDefaultSudokuBoard();
     } else {
       this.loadNonDefaultSudoKuBoard(this.selectedCellInfo);
-      // clear what was stored
-      this.resetSelectedCellInfo();
     }
 
     if (this.previousCellId) {
