@@ -8,7 +8,7 @@ describe('AppService', () => {
   let appService: AppService;
   let injector: TestBed;
   let httpMock: HttpTestingController;
-  let serverURI = 'http://sudoku-ws-docker/sudoku/';
+  let serverURI = 'http://sudoku.com/sudoku/';
 
   beforeEach(() => {
     TestBed.configureTestingModule({

@@ -5,7 +5,7 @@ const cors = require('cors');
 const SudokuValues = require('../transpiledJs/SudokuValues');
 
 var corsOptions = {
-    origin: 'http://sudoku-ws-docker/sudoku',
+    origin: 'http://sudoku.com',
     optionsSuccessStatus: 200
 }
 

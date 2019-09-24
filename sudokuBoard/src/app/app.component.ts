@@ -11,7 +11,6 @@ import { environment } from '../environments/environment';
 })
 
 export class AppComponent {
-  
   production = environment.production;
   BOARD_SIZE: number = 9;
   result: appResponseSchema;
