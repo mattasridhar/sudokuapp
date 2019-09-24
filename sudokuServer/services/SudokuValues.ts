@@ -3,7 +3,8 @@ export = class SudokuValues {
     private _sudokuBoard;
     constructor(private initBoard: number[][], private boardSize: number) {
         let initialBoard = new GenerateTemplate(initBoard, boardSize);
-        let finalBoard = populateBoardCandidates(initialBoard);
+        let randomArray = randomArrayGenerator();
+        let finalBoard = populateBoardCandidates(initialBoard, randomArray);
         if (finalBoard !== null) {
             this._sudokuBoard = finalBoard;
         }
@@ -18,15 +19,16 @@ export = class SudokuValues {
  Create the Sudoku board with potential values. 
  Making use of Backtracking Algorithm in a recursive manner. Reference: https://www.tutorialspoint.com/introduction-to-backtracking-algorithms
  */
-function populateBoardCandidates(currentBoard: GenerateTemplate): GenerateTemplate {
+function populateBoardCandidates(currentBoard: GenerateTemplate, randomArray: number[]): GenerateTemplate {
     let toBePopulated = indexToBePopulated(currentBoard);
     if (toBePopulated.rowIndex !== -1 && toBePopulated.columnIndex !== -1) {
         let row = toBePopulated.rowIndex;
         let column = toBePopulated.columnIndex;
-        for (let toBeStored = 1; toBeStored <= 9; ++toBeStored) {
+        for (let i = 0; i < 9; i++) {
+            let toBeStored = randomArray[i];
             if (isPotentialCandidate(row, column, toBeStored, currentBoard)) {
                 let storedValue = injectPotentialCandidate(toBeStored, row, column, currentBoard);
-                let updatedBoard = populateBoardCandidates(storedValue);
+                let updatedBoard = populateBoardCandidates(storedValue, randomArray);
                 if (updatedBoard != null) {
                     return updatedBoard;
                 }
@@ -109,29 +111,29 @@ function segmentContainsValue(segmentArray, toBeStored) {
 }
 
 
-    // Inject the potential Candidate 'toBeStored' into the current board by making a replica of it.
-    function injectPotentialCandidate(toBeStored: number, row: number, column: number, currentBoard: GenerateTemplate): GenerateTemplate {
-        // Creating a clone with the potential Candidate 'toBeStored' in its rightful location
-        let clonedBoard: number[][] = new Array();
-        // making use of Deep copy to prevent any changes in original be reflected in my clone.
-        for (let r = 0; r < currentBoard.BOARD_SIZE; r++) {
-            clonedBoard[r] = [...currentBoard.generatedBoard[r]];
-        }
-
-        // traverse through each row's column and place the potential candidate else store the existing value from our current board
-        let targetRow: number[] = new Array()
-        for (let c = 0; c < currentBoard.BOARD_SIZE; c++) {
-            if (c == column) {
-                targetRow[c] = toBeStored;
-            }
-            else {
-                targetRow[c] = currentBoard.generatedBoard[row][c];
-            }
-        }
-        clonedBoard[row] = targetRow;
-
-        return new GenerateTemplate(clonedBoard, currentBoard.BOARD_SIZE);
+// Inject the potential Candidate 'toBeStored' into the current board by making a replica of it.
+function injectPotentialCandidate(toBeStored: number, row: number, column: number, currentBoard: GenerateTemplate): GenerateTemplate {
+    // Creating a clone with the potential Candidate 'toBeStored' in its rightful location
+    let clonedBoard: number[][] = new Array();
+    // making use of Deep copy to prevent any changes in original be reflected in my clone.
+    for (let r = 0; r < currentBoard.BOARD_SIZE; r++) {
+        clonedBoard[r] = [...currentBoard.generatedBoard[r]];
     }
+
+    // traverse through each row's column and place the potential candidate else store the existing value from our current board
+    let targetRow: number[] = new Array()
+    for (let c = 0; c < currentBoard.BOARD_SIZE; c++) {
+        if (c == column) {
+            targetRow[c] = toBeStored;
+        }
+        else {
+            targetRow[c] = currentBoard.generatedBoard[row][c];
+        }
+    }
+    clonedBoard[row] = targetRow;
+
+    return new GenerateTemplate(clonedBoard, currentBoard.BOARD_SIZE);
+}
 
 /*
  Takes the current version of the board and stores the potential candidate in its clone and 
@@ -141,5 +143,16 @@ class GenerateTemplate {
     BOARD_SIZE: number;//setting this value in constructor incase I plan of implementing resizable boards in future
     constructor(public generatedBoard: number[][], private boardLength: number) {
         this.BOARD_SIZE = boardLength;
-     }
+    }
+}
+
+//Generates an array of random numbers in between 1-9 inclusive
+function randomArrayGenerator() {
+    const entries = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    let randomArray = [];
+    for (var tempArr = entries, i = tempArr.length; i--;) {
+        var random = tempArr.splice(Math.floor(Math.random() * (i + 1)), 1)[0];
+        randomArray.push(random);
+    }
+    return randomArray;
 }
