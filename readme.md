@@ -107,12 +107,12 @@ sudo ufx allow 80/tcp<br>sudo ufx allow 21/ftp</b></li>
 	</ul>
 <li> ‘Backend’ </li>
 	<ul>
-		<li> Navigate into your /var/www/sudokuapp/sudokuServer/ and install then run the Server<br><br><b>cd /var/www/sudokuapp/sudokuServer</b><br><b>sudo npm install</b> <br><b>nodemon </b><br> Or <br><b>node index.js</b> </li>
+		<li> Navigate into your /var/www/sudokuapp/sudokuServer/ and install then run the Server<br><b>cd /var/www/sudokuapp/sudokuServer</b><br><b>sudo npm install</b> <br><b>nodemon </b><br> Or <br><b>node index.js</b> </li>
 		<li> Test the sudokuServer: <b>npm test</b></li>
 	</ul>
 <li> ‘Frontend’ </li>
 	<ul>
-		<li> Navigate into your /var/www/sudokuapp/sudokuBoard/ and install then run the Sudoku Board UI<br><br><b>cd /var/www/sudokuapp/sudokuBoard</b><br><b>sudo npm install</b> <br><b>ng serve </b><br> Or <br><b>npm start</b> </li>
+		<li> Navigate into your /var/www/sudokuapp/sudokuBoard/ and install then run the Sudoku Board UI<br><b>cd /var/www/sudokuapp/sudokuBoard</b><br><b>sudo npm install</b> <br><b>ng serve </b><br> Or <br><b>npm start</b> </li>
 		<li> Test the sudokuBoard: <br><b>ng test<br> Or <br> npm test</b></li>
 	</ul>
 <li> ‘Docker Images’ </li>
