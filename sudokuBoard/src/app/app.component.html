@@ -47,13 +47,12 @@
                 </tbody>
             </table>
             <hr class="my-4">
-
-            <div class="alert alert-dismissible alert-danger" *ngIf="!hasBoard">
-                <button type="button" class="close" data-dismiss="alert" (click)="closeError()">&times;</button>
-                <strong>Our server seems to be a little <i>MIFFED UP</i> with you. </strong> <br>
-                <a href="" class="alert-link">Kindly refresh the page</a> or try click the RELOAD button above to
-                <i>CHEER</i> her up!!.
-            </div>
+        </div>
+        <div class="alert alert-dismissible alert-danger" *ngIf="!hasBoard">
+            <button type="button" class="close" data-dismiss="alert" (click)="closeError()">&times;</button>
+            <strong>Our server seems to be a little <i>MIFFED UP</i> with you. </strong> <br>
+            <a href="" class="alert-link">Kindly refresh the page</a> to
+            <i>CHEER</i> her up!!.
         </div>
     </div>
 </div>
