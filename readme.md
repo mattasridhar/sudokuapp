@@ -151,6 +151,6 @@ The user can toggle the cells in the UI. Upon selection of a cell any previously
 
 If for some reason, the application never receives any message then the Figure 1 screen will be shown to the user. But if the server responds with an empty array due to network issues or corrupt url formation then the screen at Figure 4 is shown.
 
-![](readme_figs/fig6.png)
+![](readme_figs/fig4.png)
 
 	Figure 4: Error Screen
