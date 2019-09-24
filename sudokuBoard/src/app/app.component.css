@@ -7,7 +7,7 @@
 /* Spinner Animation */
 
 .spinner {
-    margin-left: 35vw;
+    margin-left: 25vw;
     border: 12px solid #e9ecef;
     border-radius: 50%;
     border-top: 12px solid #005194;
@@ -103,6 +103,7 @@ td {
 
 #sudokuBoardContainer,
 #contentArea {
+    align-content: center;
     text-align: center;
 }
 
