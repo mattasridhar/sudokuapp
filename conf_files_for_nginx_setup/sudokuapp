@@ -3,7 +3,7 @@ server{
 listen 80 default_server;
 listen [::] default_server;
 
-root /var/www/sudokuapp;
+root /var/www/sudokuapp/sudokuBoard;
 index app.html;
 
 server_name sudokuapp;
@@ -14,3 +14,4 @@ try_files $uri $uri/ =404;
 }
 
 }
+
