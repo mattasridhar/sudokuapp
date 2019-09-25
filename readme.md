@@ -10,7 +10,12 @@ TABLE OF CONTENTS\
 
 
 INTRODUCTION\
-	This Sudoku web application is built using Angular for frontend User Interface and Express, Node for handling the API calls. We use Karma for testing the frontend component and Mocha for testing our API calls. We also make use of Nginx for Reverse Proxy and Docker for deploying images for containers.
+	This Sudoku web application is built using Angular for frontend User Interface and Express, Node for handling the API calls. We use Karma for testing the frontend component and Mocha for testing our API calls. We also make use of Nginx for Reverse Proxy and Docker for deploying images for containers. 
+	<br><br>
+<b>Check out this video to see the demo Sudoku Application.</b>
+
+[![](http://img.youtube.com/vi/cHZnBqhUtD0/0.jpg)](https://www.youtube.com/watch?v=cHZnBqhUtD0)
+<pre><i>If the above video doesn't seem to work, you can find the same clip of Demo at (~/readme_figs/DemoVideos/SudokuSPADemo.mp4) location.</i></pre>
 
 SPECIFICATIONS\
 	<pre>A web service that returns a randomized 9x9 grid of integers in the range [1-9] representing a Sudoku board:</pre>
@@ -71,7 +76,7 @@ SOURCE CODE\
 	</ul>
 
 INSTALLATION NOTES\
-	All the execution of this application will be done via command prompt terminal. You can skip the Installation step if you have already Nginx installed. But you are still required to follow the underlined steps in-order to setup the project properly and be able to run it locally
+	All the execution of this application will be done via command prompt terminal. You can skip the Installation step if you have already Nginx installed. But you are still required to follow the <i>Italicized</i> steps in-order to setup the project properly and be able to run it locally
 <ol type="A">
 	<li> Installing Nginx in Ubuntu </li>
 	<ul>
@@ -97,7 +102,7 @@ sudo ufx allow 80/tcp<br>sudo ufx allow 21/ftp</b></li>
 		<li> <i>Copy your Git Cloned Code into /var/www/<br><b>sudo cp -r /home/YOUR_PC_NAME/YOUR_GIT_FOLDER/. /var/www/ </b></i></li>
 		<li> <i>Then point your domain name to our new server. So create a record in hosting providers’ DNS setting by pointing the domain name (sudoku.com) to our server IP address(0.0.0.0).<br><b>sudo nano /etc/hosts</b></i></li>
 		<li> <i>Add the domain name - IP address mapping<br><b>0.0.0.0		suduko.com </b></i></li>
-		<li> <i>Navigate into the /var/www/sudokuapp/sudokuBoard and give permissions:</i></li>
+		<li> <i>Navigate into the /var/www/sudokuapp/sudokuBoard and give permissions:</i><br><b>sudo chmod -R 777 *</b></li>
 		<li> <i>Move the Static files to the Server<br><b>scp -r * 0.0.0.0:/var/www/sudokuapp/sudukoBoard</b></i></li>
 		<li> <i>To configure nginx server to point to our new location navigate to nginx folder Create ‘sites-available’ and ‘sites-enabled’ folder if not created by default:<br><b>cd /etc/nginx<br>mkdir sites-available && mkdir sites-enabled</b></i></li>
 		<li> <i>Create the configuration files to our files in ‘sites-available’ and ‘sites-enabled’ has the symbolic link which we will tell nginx to run. Open ‘sudokuapp’ and copy its contents into the file you open in terminal using the command below<br><b>sudo nano sites-available/sudokuapp</b></i></li>
@@ -125,10 +130,16 @@ sudo ufx allow 80/tcp<br>sudo ufx allow 21/ftp</b></li>
 		<li> Build the docker image for front-end, navigate to the ‘sudokuBoard’ folder and issue the following command to create a docker image.<br><b>docker build -t sudoku-spa:level-4 . </b> </li>
 		<li> Run the docker image we just built for the front-end, issue the following command to run the docker image. This command maps the front-end to run on 4200.<br><b>docker run -d -v ${PWD}:/app -v /app/node_modules -p 2305:4200 --name sudoku-spa --rm sudoku-spa:level-4</b> </li>
 		<li> To stop running the docker image we just built for the front-end, issue the following command.<br><b>docker stop sudoku-spa </b> </li>
-		<li> To stop running the docker image we just built for the server, get the container id from the output of the first command and then issue the second command specifying the retrieved container id.<br><b>docker ps<br>docker stop <container-ID> </b> </li>
-		<li> Move a directory up (<b>cd ..</b>) i.e. inside the ‘sudokuapp’ folder and issue the following command to see the whole sudoku application be deployed using nginx.<br><b>docker-compose up --build</b> </li>
+		<li> To stop running the docker image we just built for the server, get the container id from the output of the first command and then issue the second command specifying the retrieved container id.<br><b>docker ps<br>docker stop CONTAINER_ID </b> </li>
+		<li> Move a directory up (<b>cd ..</b>) i.e. inside the ‘sudokuapp’ folder and issue the following command to see the whole sudoku application be deployed using nginx. The website should be accessible on localhost:9093 and server on localhost:9094.<br><b>docker-compose up --build</b> </li>
 	</ul>
 	</ol>
+
+<br><b>Check out this video to see the demo Docker Build of Web-service of our Sudoku Application.</b>
+
+[![](http://img.youtube.com/vi/MmqxeNufGok/0.jpg)](https://www.youtube.com/watch?v=MmqxeNufGok)
+<pre><i>If the above video doesn't seem to work, you can find the same clip of Demo at (~/readme_figs/DemoVideos/dockerBuildDemo.mp4) location.</i></pre>
+<br>
 
 ABOUT THE APPLICATION\
 	This application can be accessed by visiting the url ‘http://sudoku.com/’ after you have installed and initiated the step given in the ‘INSTALLATION NOTES’ section(except the Docker section if you are running it locally).
@@ -149,7 +160,7 @@ The user can toggle the cells in the UI. Upon selection of a cell any previously
 
 	Figure 3: Selected and Un-selected cell.
 
-If for some reason, the application never receives any message then the Figure 1 screen will be shown to the user. But if the server responds with an empty array due to network issues or corrupt url formation then the screen at Figure 4 is shown.
+If for some reason, the application never receives any message then the Figure 1 screen will be shown to the user. But if the server responds with an empty array due to network issues or malformed url formation then the error message of screen at Figure 4 is shown.
 
 ![](readme_figs/fig4.png)
 
