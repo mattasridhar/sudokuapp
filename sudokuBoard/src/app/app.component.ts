@@ -10,7 +10,6 @@ import { appRequestSchema, appResponseSchema } from './appSchema';
 })
 
 export class AppComponent {
-
   BOARD_SIZE: number = 9;
   result: appResponseSchema;
   showSpinner: Boolean = true;
@@ -50,6 +49,9 @@ export class AppComponent {
         } else {
           this.hasBoard = false;
         }
+      }, error => {
+        this.toggleReloadButton(false);
+        this.hasBoard = false;
       });
     this.resetSelectedCellInfo();
   }
@@ -67,6 +69,9 @@ export class AppComponent {
         } else {
           this.hasBoard = false;
         }
+      }, error => {
+        this.toggleReloadButton(false);
+        this.hasBoard = false;
       });
     this.resetSelectedCellInfo();
   }
@@ -115,12 +120,12 @@ export class AppComponent {
   // Everytime the Board is refreshed, enable the button. Disable it while the Board loads
   toggleReloadButton(showBtn) {
     if (showBtn) {
-      this.reloadBtn.classList.remove("disabled");
+      this.reloadBtn.disabled = false;
       this.reloadBtn.classList.remove("btn-danger");
       this.reloadBtn.classList.add("btn-success");
     } else {
       this.reloadBtn.classList.remove("btn-success");
-      this.reloadBtn.classList.add("disabled");
+      this.reloadBtn.disabled = true;
       this.reloadBtn.classList.add("btn-danger");
     }
   }

@@ -1,10 +1,8 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AppService } from './app.service';
 
 describe('AppComponent', () => {
@@ -55,16 +53,15 @@ describe('AppComponent', () => {
     expect(marqueeText).toContain('This Sudoku Application is constructed with Angular and Nginx');
   });
 
-  //clicking on reload button shouldn't disable it
-  it('Reload Button behavior', () => {
+  // reload button should be disabled if no network
+  it('Reload Button Disabled if no Server Access is available', () => {
     const reloadButton = debugEntity.nativeElement.querySelector('#reloadBtn');
     const alertBox = debugEntity.nativeElement.querySelector('.alert-link');
 
     reloadButton.click();
     fixture.detectChanges();
 
-    expect(alertBox).toBeNull();
-    expect(reloadButton.disabled).toBeFalsy();
+    expect(reloadButton.disabled).toBeTruthy();
   });
 
 });

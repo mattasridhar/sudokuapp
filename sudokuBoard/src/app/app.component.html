@@ -8,10 +8,13 @@
         <div class="rulesSection">
             <blockquote class="blockquote rulesArea">
                 <legend> <u><i>NICE TO KNOW:</i></u></legend>
-                <footer class="blockquote-footer"><cite><b>Click 'RELOAD' button</b></cite> to see New SUDOKU Solution</footer>
-                <footer class="blockquote-footer"><cite><b>CLICK ONCE</b></cite> on the cell and hit Reload button to see New Solution
+                <footer class="blockquote-footer"><cite><b>Click 'RELOAD' button</b></cite> to see New SUDOKU Solution
                 </footer>
-                <footer class="blockquote-footer"><cite><b>DOUBLE CLICK</b></cite> on the cell to De-Select the selected cell
+                <footer class="blockquote-footer"><cite><b>CLICK ONCE</b></cite> on the cell and hit Reload button to
+                    see New Solution
+                </footer>
+                <footer class="blockquote-footer"><cite><b>DOUBLE CLICK</b></cite> on the cell to De-Select the selected
+                    cell
                 </footer>
                 <footer class="blockquote-footer"><b>**AT A TIME ONLY ONE CELL CAN BE SELECTED**</b></footer>
             </blockquote>
@@ -37,18 +40,19 @@
                     <!-- running <tr> for rows and <td> for columns -->
                     <tr *ngFor="let value of values; let i=index">
                         <td class="table-hover" *ngFor="let cell of value; let j=index">
-                            <input class="form-control cellValue" id={{i}}{{j}} (click)="selectMe($event)" (dblclick)="unSelectMe()" type="text" placeholder={{cell}}>
+                            <input class="form-control cellValue" id={{i}}{{j}} (click)="selectMe($event)"
+                                (dblclick)="unSelectMe()" type="text" placeholder={{cell}}>
                         </td>
                     </tr>
                 </tbody>
             </table>
             <hr class="my-4">
-
-            <div class="alert alert-dismissible alert-danger" *ngIf="!hasBoard">
-                <button type="button" class="close" data-dismiss="alert" (click)="closeError()">&times;</button>
-                <strong>Our server seems to be a little <i>MIFFED UP</i> with you. </strong> <br>
-                <a href="" class="alert-link">Kindly refresh the page</a> or try click the RELOAD button above to <i>CHEER</i> her up!!.
-            </div>
+        </div>
+        <div class="alert alert-dismissible alert-danger" *ngIf="!hasBoard">
+            <button type="button" class="close" data-dismiss="alert" (click)="closeError()">&times;</button>
+            <strong>Our server seems to be a little <i>MIFFED UP</i> with you. </strong> <br>
+            <a href="" class="alert-link">Kindly refresh the page</a> to
+            <i>CHEER</i> her up!!.
         </div>
     </div>
 </div>
