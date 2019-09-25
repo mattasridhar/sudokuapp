@@ -12,10 +12,12 @@ TABLE OF CONTENTS\
 INTRODUCTION\
 	This Sudoku web application is built using Angular for frontend User Interface and Express, Node for handling the API calls. We use Karma for testing the frontend component and Mocha for testing our API calls. We also make use of Nginx for Reverse Proxy and Docker for deploying images for containers. 
 	<br><br>
-<b>Check out this video to see the demo Sudoku Application.</b>
 
-[![](http://img.youtube.com/vi/cHZnBqhUtD0/0.jpg)](https://www.youtube.com/watch?v=cHZnBqhUtD0)
-<pre><i>If the above video doesn't seem to work, you can find the same clip of Demo at (~/readme_figs/DemoVideos/SudokuSPADemo.mp4) location.</i></pre>
+<b>Check out this video to see the demo Docker Build of Web-service of our Sudoku Application.</b>
+
+[![](http://img.youtube.com/vi/MmqxeNufGok/0.jpg)](https://www.youtube.com/watch?v=MmqxeNufGok)
+<pre><i>If the above video doesn't seem to work, you can find the same clip of Demo at (~/readme_figs/DemoVideos/dockerBuildDemo.mp4) location.</i></pre>
+<br>
 
 SPECIFICATIONS\
 	<pre>A web service that returns a randomized 9x9 grid of integers in the range [1-9] representing a Sudoku board:</pre>
@@ -134,12 +136,6 @@ sudo ufx allow 80/tcp<br>sudo ufx allow 21/ftp</b></li>
 		<li> Move a directory up (<b>cd ..</b>) i.e. inside the ‘sudokuapp’ folder and issue the following command to see the whole sudoku application be deployed using nginx. The website should be accessible on localhost:9093 and server on localhost:9094.<br><b>docker-compose up --build</b> </li>
 	</ul>
 	</ol>
-
-<br><b>Check out this video to see the demo Docker Build of Web-service of our Sudoku Application.</b>
-
-[![](http://img.youtube.com/vi/MmqxeNufGok/0.jpg)](https://www.youtube.com/watch?v=MmqxeNufGok)
-<pre><i>If the above video doesn't seem to work, you can find the same clip of Demo at (~/readme_figs/DemoVideos/dockerBuildDemo.mp4) location.</i></pre>
-<br>
 
 ABOUT THE APPLICATION\
 	This application can be accessed by visiting the url ‘http://sudoku.com/’ after you have installed and initiated the step given in the ‘INSTALLATION NOTES’ section(except the Docker section if you are running it locally).
