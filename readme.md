@@ -76,7 +76,7 @@ SOURCE CODE\
 	</ul>
 
 INSTALLATION NOTES\
-	All the execution of this application will be done via command prompt terminal. You can skip the Installation step if you have already Nginx installed. But you are still required to follow the <i>Italicized</i> steps in-order to setup the project properly and be able to run it locally
+	All the execution of this application will be done via command prompt terminal. You can skip the Installation step if you have already Nginx installed. But you are still required to follow the <i>Italicized</i> steps in-order to setup the project properly and be able to run it locally. <b>Assuming you have CURL and OPENSSL already installed</b>
 <ol type="A">
 	<li> Installing Nginx in Ubuntu </li>
 	<ul>
@@ -87,16 +87,16 @@ INSTALLATION NOTES\
 		<li> Enable and Run Nginx <br> <b>sudo systemctl start nginx<br>sudo systemctl enable nginx</b></li>
 		<li> Enable firewall <br> <b>sudo ufw enable</b></li>
 		<li> <i>Create a sudokuapp.conf file for the server in /etc/nginx/conf.d/ location<br><b>sudo nano /etc/nginx/conf.d/sudokuapp.conf</b></i></li>
-		<li> <i>Copy the contents of ‘nginx_confD_sudokuapp.conf’ file into the sudokuapp.conf file created at /etc/nginx/conf.d/ location</i></li>
-		<li> <i>Disable the default conf file<br><b>sudo mv /etc/nginx/conf.d/default.conf  etc/nginx/conf.d/default.conf.disabled</b></i></li>
+		<li> <i>Copy the contents of ‘sudokuapp.conf’ file into the sudokuapp.conf file created at /etc/nginx/conf.d/ location</i></li>
+		<li> <i>Disable the default conf file<br><b>sudo mv /etc/nginx/conf.d/default.conf  /etc/nginx/conf.d/default.conf.disabled</b></i></li>
 		<li> <i>Test and Reload nginx<br><b>sudo nginx –t<br>sudo nginx -s reload</b></i></li>
 	</ul>
 	<li> ‘Nginx Setup’ </li>
 	<ul>
 		<li> Check the applications that the firewall has given access to by default: <br><b>sudo ufw app list </b></li>
-		<li> Allow the ‘Nginx Full’(Both encrypted and unencrypted Traffics are allowed), ‘Nginx HTTP’(Unencrypted Traffics are allowed) or ‘Nginx HTTPS’(Only encrypted Traffics are allowed) as per your needs.<br><b>sudo ufx allow ‘Nginx Full’<br>sudo ufx allow ‘Nginx HTTPS’<br>sudo ufx allow ‘Nginx HTTPS’</b></li>
-		<li> Or you can enable the specifically required Ports as per your needs.<br><b>sudo ufx allow 8080/tcp<br>
-sudo ufx allow 80/tcp<br>sudo ufx allow 21/ftp</b></li>
+		<li> Allow the ‘Nginx Full’(Both encrypted and unencrypted Traffics are allowed), ‘Nginx HTTP’(Unencrypted Traffics are allowed) or ‘Nginx HTTPS’(Only encrypted Traffics are allowed) as per your needs.<br><b>sudo ufw allow ‘Nginx Full’<br>sudo ufw allow ‘Nginx HTTPS’<br>sudo ufw allow ‘Nginx HTTPS’</b></li>
+		<li> Or you can enable the specifically required Ports as per your needs.<br><b>sudo ufw allow 8080/tcp<br>
+sudo ufw allow 80/tcp<br>sudo ufw allow 21/ftp</b></li>
 		<li> Check the status of the recently allowed traffic issue the following command. You should see a full list of all the traffic ports enabled<br><b>sudo ufw status </b></li>
 		<li> Active status is displayed if Nginx is running with the help of following command.<br><b>sudo systemctl status nginx</b></li>
 		<li> <i>Copy your Git Cloned Code into /var/www/<br><b>sudo cp -r /home/YOUR_PC_NAME/YOUR_GIT_FOLDER/. /var/www/ </b></i></li>
@@ -104,10 +104,10 @@ sudo ufx allow 80/tcp<br>sudo ufx allow 21/ftp</b></li>
 		<li> <i>Add the domain name - IP address mapping<br><b>0.0.0.0		suduko.com </b></i></li>
 		<li> <i>Navigate into the /var/www/sudokuapp/sudokuBoard and give permissions:</i><br><b>sudo chmod -R 777 *</b></li>
 		<li> <i>Move the Static files to the Server<br><b>scp -r * 0.0.0.0:/var/www/sudokuapp/sudukoBoard</b></i></li>
-		<li> <i>To configure nginx server to point to our new location navigate to nginx folder Create ‘sites-available’ and ‘sites-enabled’ folder if not created by default:<br><b>cd /etc/nginx<br>mkdir sites-available && mkdir sites-enabled</b></i></li>
-		<li> <i>Create the configuration files to our files in ‘sites-available’ and ‘sites-enabled’ has the symbolic link which we will tell nginx to run. Open ‘sudokuapp’ and copy its contents into the file you open in terminal using the command below<br><b>sudo nano sites-available/sudokuapp</b></i></li>
-		<li> <i>Link the ‘sudokuapp’ file to the ‘sites-enabled’ folder:<br><b>sudo ln -s /etc/nginx/sites-available/sudokuapp /etc/nginx/sites-enabled/sudokuapp </b></i></li>
-		<li> <i>Remove the ‘default’ file from ‘sites-enabled’ folder if created by default<br><b>sudo mv /etc/nginx/sites-enabled/default /home/YOUR_DESIRED_LOCATION/default </b></i></li>
+		<li> (OPTIONAL: If you set up the Nginx properly, you dont need this step) <i>To configure nginx server to point to our new location navigate to nginx folder Create ‘sites-available’ and ‘sites-enabled’ folder if not created by default:<br><b>cd /etc/nginx<br>mkdir sites-available && mkdir sites-enabled</b></i></li>
+		<li> (OPTIONAL: If you set up the Nginx properly, you dont need this step) <i>Create the configuration files to our files in ‘sites-available’ and ‘sites-enabled’ has the symbolic link which we will tell nginx to run. Open ‘sudokuapp’ and copy its contents into the file you open in terminal using the command below<br><b>sudo nano sites-available/sudokuapp</b></i></li>
+		<li> (OPTIONAL: If you set up the Nginx properly, you dont need this step) <i>Link the ‘sudokuapp’ file to the ‘sites-enabled’ folder:<br><b>sudo ln -s /etc/nginx/sites-available/sudokuapp /etc/nginx/sites-enabled/sudokuapp </b></i></li>
+		<li> (OPTIONAL: If you set up the Nginx properly, you dont need this step) <i>Remove the ‘default’ file from ‘sites-enabled’ folder if created by default<br><b>sudo mv /etc/nginx/sites-enabled/default /home/YOUR_DESIRED_LOCATION/default </b></i></li>
 		<li> <i>Restart nginx:<br><b>sudo systemctl restart nginx</b></i></li>
 	</ul>
 <li> ‘Backend’ </li>
