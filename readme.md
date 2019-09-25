@@ -39,7 +39,7 @@ SPECIFICATIONS\
 	<li> RELOAD button which when clicked refreshes the board values by fetching the fresh values from the server</li>
 	<li> RELOAD button is deactivated until the spinner exists</li>
 	<li> If a cell is selected on the board and the Reload button is clicked then fresh board is generated with new values without altering the value and the position of the selected cell</li>
-	<li> Cell selection must act like a toggle (On/Off) when clicked</li>
+	<li> At a time only one cell must be selected.</li>
 	<li> The resulting Sudoku board must be valid abiding all the rules of the Sudoku game</li>
 	<li> Programming language: Typescript, Angular</li>
 	<li> Build tools: npm</li>
